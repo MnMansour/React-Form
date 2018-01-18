@@ -1,0 +1,181 @@
+*{
+  box-sizing: border-box;
+}
+body{
+  margin: 0;
+  background: #454e57;
+  color: white;
+  font-family: sans-serif;
+  font-size: 1.2rem
+}
+
+.title{
+  text-align: center
+}
+
+form{
+  width: 85%;
+  margin: 40px auto;
+  display: flex;
+  flex-direction: column;
+}
+
+h3{
+  border-bottom: 2px solid #00b2f0;
+  margin: 10px ;
+  padding: 10px 0px
+}
+
+h6{
+  margin: 10px ;
+  padding: 10px 0px
+}
+
+.personal{
+  display: flex;
+  max-width: 100%;
+  flex-direction: column;
+  justify-content: center
+}
+
+input{
+  background: #454e57;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none ;
+  border-bottom: 2px solid #81868c;
+  padding: 3px;
+  color: white;
+  margin: 10px ;
+  flex-shrink: 1
+}
+
+.section{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between; 
+  align-items: flex-start
+}
+
+.Q3-width{
+  flex-grow: 5;
+  display: flex;
+  flex-direction: column
+}
+
+.Q1-width{
+  flex-grow: 1;
+  min-width: 170px;
+  max-width: 24%;
+  margin: 1%;
+}
+
+input[type="submit"]{
+  color: white;
+  background: #00b2f0;
+  border: none;
+  font-size: 1.2rem;
+  width: 170px;
+  margin:5% 1% 1% 1%;
+  padding: 12px 0px
+}
+
+input:focus{
+  outline: none
+}
+
+/* primary design CSS*/
+input[type="radio"]{
+  position: absolute;
+  opacity: 0;
+  width:0;
+  margin: 0;
+  padding: 0
+}
+
+.bord{
+  text-align:center;
+  font-size: 1rem;
+  font-weight: bold;
+  border: 2px solid white;
+  padding: 8px  2px;
+  display: inline-block;
+  width:  100%;
+}
+
+.bord:hover{
+  background: #a6e4f8;
+  border: 2px solid #a6e4f8;
+  color: black;
+}
+
+input[type="radio"]:checked + label{
+  background: #00b2f0;
+  border: 2px solid #00b2f0;
+}
+
+/* */
+input[type="checkbox"]{
+  position: absolute;
+  opacity: 0;
+  }
+
+.check1, .check2{
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px
+}
+
+.check2{margin-right: 15%}
+
+.check1 label, .check2 label{
+  margin: 10px;
+  font-size: 1rem;
+  line-height: 18px;
+  display: inline-block;
+  width: 80%;
+}
+
+.siq{
+  display: inline-block;
+  height: 12px;
+  width: 12px;
+  border: 1px solid white;
+  margin-right: 5px
+}
+
+input[type="checkbox"]:checked + label{
+  color: #00b2f0;
+  font-weight: bold
+}
+
+input[type="checkbox"]:checked + label .siq{
+  background: #00b2f0;
+}
+
+.RemoveS{
+  display: none;
+  float: right;
+  margin-right: 50%;
+  font-size: 1.1rem;
+  font-weight:bold 
+}
+
+.check1 label:hover span{
+  display: inline;
+}
+
+@media screen and (max-width: 600px){
+  .Q1-width{
+    max-width: unset;
+  }
+}
+ 
+
+
+
+
+
+
+
