@@ -1,45 +1,40 @@
 import React, { Component } from 'react';
 import '../App.css';
-import {items} from '../data'
+import {primaryDiscriplines} from '../data'
+import {otherDiscriplines} from '../data'
 import {places} from '../data'
 
 class Form2 extends Component {
 
 state={
-    primaryDesign:items,
-    otherDiscriplines:items,
+    primaryDiscriplines,
+    otherDiscriplines,
     places,
-    newDiscip:"",
+    newDiscip:'',
     newDiscips:[],
-    removeItems:[],
-    selectedPlace:[],
-    selectedDiscrip:[],
-    selectedPrimary:''
 }
 
-remove = (x) =>{
-    
-    let arr = this.state.otherDiscriplines.filter((item)=> item!==x)
+
+remove = (x) =>{ 
+    const arr = this.state.otherDiscriplines.filter(({label,checked})=>x!==label)
+    const arr1 = this.state.newDiscips.filter(({label,checked})=>x!==label)
     this.setState({
         otherDiscriplines:arr,
-        removeItems:this.state.removeItems.concat([x])
+        newDiscips:arr1
     })
-    
 }
 
-removeS = (x) =>{
-    const removed =this.state.removeItems
-    const arr = this.state.primaryDesign
-        .concat(this.state.newDiscips)
-        .filter((item)=> item !== x )
-        .filter((item)=> !removed.includes(item));
-
-    this.setState({otherDiscriplines:arr});
+removeChoosenRadio = (x) =>{
+    const arr = this.state.primaryDiscriplines.map(({label,checked})=>{return{label,checked:false}})
+    .concat(this.state.newDiscips)
+    .filter((item)=> item.label!==x)
+    this.setState({otherDiscriplines:arr})
 }
 
 addItems = () =>{
-    let newItem = this.state.newDiscip;
-    let newItems = this.state.newDiscips.concat([newItem])
+    const newDiscip = this.state.newDiscip;
+    const newItem = {label:newDiscip,checked:true}
+    const newItems = this.state.newDiscips.concat(newItem)
 
     this.setState({
         newDiscip:"",
@@ -50,52 +45,71 @@ addItems = () =>{
 
 submit = (e)=>{
     e.preventDefault();
-    console.log('selectedDiscrip',this.state.selectedDiscrip);
-    console.log('selectedPlace',this.state.selectedPlace)
-    console.log('selectedPrimary:',this.state.selectedPrimary)
+    console.log('Primary Discriplines',this.state.primaryDiscriplines)
+    console.log('Other Discriplines',this.state.otherDiscriplines)
+    console.log("Places", this.state.places)
     this.setState({
-        otherDiscriplines:items,
+        primaryDiscriplines,
+        otherDiscriplines,
+        places,
+        newDiscip:'',
         newDiscips:[],
-        removeItems:[],
-        selectedPlace:[],
-        selectedDiscrip:[],
-        selectedPrimary:''
+        removeItems:[]
     })
-    
 }
 
+
+radioItemsOnChange = (label,checked,i)=> {
+    const arr = this.state.primaryDiscriplines.map(({label,checked})=>{return{label,checked:false}})
+    const newItem = {label, checked: !checked}
+    const primaryDiscriplines = [...arr.slice(0,i),newItem, ...arr.slice(i+ 1)]
+    this.setState({primaryDiscriplines})
+    this.removeChoosenRadio(label)
+}
+
+checkItemsOnChange = (label, checked,i) => {
+    const newItem = {label, checked: !checked}
+    const otherDiscriplinesN = [...this.state.otherDiscriplines.slice(0,i),newItem, ...this.state.otherDiscriplines.slice(i + 1)]
+    this.setState({otherDiscriplines:otherDiscriplinesN})
+}
+
+placesOnChange = (label, checked,i) => {
+    const newItem = {label, checked: !checked}
+    const newPlaces = [...this.state.places.slice(0,i),newItem, ...this.state.places.slice(i + 1)]
+    this.setState({places:newPlaces})
+}
+
+
 render() {
-    const radioItems = this.state.primaryDesign.map((item,i)=>{
+    const radioItems = this.state.primaryDiscriplines.map(({label,checked},i)=>{
         return(
             <div className="Q1-width" key={i}>
-                <input type="radio" name="primaryDesign" id={i} value={item}
-                 checked={this.state.selectedPrimary === item}
-                 onChange={()=>this.setState({selectedPrimary:item})}/>
-                <label className="bord" htmlFor={i} onClick={()=>this.removeS(item)}>{item}</label>
+                <input type="radio" name="primaryDiscriplines" id={i}
+                 checked={checked}
+                 onChange={()=>this.radioItemsOnChange(label,checked,i)}/>
+                <label className="bord" htmlFor={i}>{label}</label>
             </div>
         )
     })
-    const checkItems = this.state.otherDiscriplines.map((item,i)=>{
+    const checkItems = this.state.otherDiscriplines.map(({label,checked},i)=>{
         return(
             <div key={i}>
                 <input type="checkbox" id={i+'x'} 
-                checked={this.state.selectedDiscrip.includes(item)}
-                onChange={(e)=>this.setState({selectedDiscrip: this.state.selectedDiscrip.includes(item)? 
-                this.state.selectedDiscrip.filter(i=>i!==item):this.state.selectedDiscrip.concat(item)})}
+                checked={checked}
+                onChange={()=>this.checkItemsOnChange(label, checked,i)}
                 />
-                <label htmlFor={i+'x'} ><div className="siq"></div>{item}</label>
-                <i onClick={()=>this.remove(item)} className="fa fa-trash-o" aria-hidden="true"></i>
+                <label htmlFor={i+'x'} ><div className="siq"></div>{label}</label>
+                <i onClick={()=>this.remove(label)} className="fa fa-trash-o" aria-hidden="true"></i>
             </div>
         )
     })
-    const places = this.state.places.map((item,i)=>{
-        return(
+    const places = this.state.places.map(({label,checked},i)=>{
+            return(
             <div key={i}>
                 <input type="checkbox" id={i+'y'}
-                checked={this.state.selectedPlace.includes(item)}
-                onChange={(e)=>this.setState({selectedPlace: this.state.selectedPlace.includes(item)? 
-                    this.state.selectedPlace.filter(i=>i!==item):this.state.selectedPlace.concat(item)})}/>
-                <label htmlFor={i+'y'}><div className="siq"></div>{item}</label>
+                checked={checked}
+                onChange={()=>this.placesOnChange(label, checked,i)}/>
+                <label htmlFor={i+'y'}><div className="siq"></div>{label}</label>
             </div>
         )
     })
@@ -106,7 +120,6 @@ render() {
             <div className="section">
                 {radioItems}
             </div>
-
             <div className="section">
                 <div className="check1">
                     <h6> Do you have experience with any other disciplines?</h6>

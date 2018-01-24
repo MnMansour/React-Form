@@ -1,16 +1,5 @@
-*{
-  box-sizing: border-box;
-}
-body{
-  margin: 0;
-  background: #454e57;
-  color: white;
-  font-family: sans-serif;
-  font-size: 1.2rem
-}
-
 .title{
-  text-align: center
+  text-align: center;
 }
 
 form{
@@ -23,19 +12,19 @@ form{
 h3{
   border-bottom: 2px solid #00b2f0;
   margin: 10px ;
-  padding: 10px 0px
+  padding: 10px 0px;
 }
 
 h6{
   margin: 10px ;
-  padding: 10px 0px
+  padding: 10px 0px;
 }
 
 .personal{
   display: flex;
   max-width: 100%;
   flex-direction: column;
-  justify-content: center
+  justify-content: center;
 }
 
 input{
@@ -47,7 +36,7 @@ input{
   padding: 3px;
   color: white;
   margin: 10px ;
-  flex-shrink: 1
+  flex-shrink: 1;
 }
 
 .section{
@@ -55,20 +44,20 @@ input{
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between; 
-  align-items: flex-start
+  align-items: flex-start;
 }
 
 .Q3-width{
   flex-grow: 5;
   display: flex;
-  flex-direction: column
+  flex-direction: column;
 }
 
 .Q1-width{
   flex-grow: 1;
   min-width: 170px;
   max-width: 24%;
-  margin: 1%;
+  margin: 10px;
 }
 
 input[type="submit"]{
@@ -78,20 +67,17 @@ input[type="submit"]{
   font-size: 1.2rem;
   width: 170px;
   margin:5% 1% 1% 1%;
-  padding: 12px 0px
+  padding: 12px 0px;
 }
 
 input:focus{
-  outline: none
+  outline: none;
 }
 
 /* primary design CSS*/
 input[type="radio"]{
   position: absolute;
   opacity: 0;
-  width:0;
-  margin: 0;
-  padding: 0
 }
 
 .bord{
@@ -124,7 +110,7 @@ input[type="checkbox"]{
 .check1, .check2{
   display: flex;
   flex-direction: column;
-  margin-top: 20px
+  margin-top: 20px;
 }
 
 .check2{margin-right: 15%}
@@ -142,36 +128,83 @@ input[type="checkbox"]{
   height: 12px;
   width: 12px;
   border: 1px solid white;
-  margin-right: 5px
+  margin-right: 8px;
 }
 
 input[type="checkbox"]:checked + label{
   color: #00b2f0;
-  font-weight: bold
+  font-weight: bold;
 }
 
 input[type="checkbox"]:checked + label .siq{
   background: #00b2f0;
 }
 
-.RemoveS{
-  display: none;
-  float: right;
-  margin-right: 50%;
-  font-size: 1.1rem;
-  font-weight:bold 
-}
-
 .check1 label:hover span{
   display: inline;
 }
 
+textarea{
+  margin: 1% ;
+  width: 98%;
+  background: #454e57;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 10px 0px 10px 10px;
+  color: white;
+  outline: none;
+  resize: none;
+  margin-top: 50px;
+}
+
+.nav{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+a{
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  border: 2px solid #81868c;
+  padding: 16px 24px;
+  margin: 40px 50px 0px 50px;
+}
+
+a:hover{
+  background: #a6e4f8;
+  border: 2px solid #a6e4f8;
+  color: black;
+}
+
+.selected{
+  background: #00b2f0;
+  border: 2px solid #00b2f0;
+}
+
+.invalid{
+  border-bottom: 2px solid red;
+}
+.personal span{
+  margin: 0px 10px;
+  color: tomato;
+  font-size: 0.7em;
+  font-weight: 900;
+}
+
+.full-width{
+  display: inline-block;
+  width: 100%;
+  margin: 0;
+}
 @media screen and (max-width: 600px){
   .Q1-width{
     max-width: unset;
   }
 }
  
+
 
 
 
